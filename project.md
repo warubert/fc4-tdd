@@ -29,3 +29,11 @@ Este projeto é um exemplo simplificado de um sistema de reservas de propriedade
         - Seja maior que zero.
         - Não exceda a capacidade máxima definida para a propriedade.
     - Reservas que não atendem a esses critérios são rejeitadas, e o sistema informa o usuário com mensagens apropriadas.
+
+
+---
+
+Fazer um reserva
+- user
+- property
+Cancelar
