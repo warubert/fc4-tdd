@@ -3,7 +3,6 @@ import { DataSource, Repository } from "typeorm";
 import { Property } from "../../domain/entities/property";
 import { TypeORMPropertyRepository } from "./typeorm_property_repository";
 import { BookingEntity } from "../persistence/entities/booking_entity";
-import { User } from "../../domain/entities/user";
 import { UserEntity } from "../persistence/entities/user_entity";
 
 describe("TypeORMPropertyRepository", () => {

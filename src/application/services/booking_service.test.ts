@@ -82,7 +82,7 @@ describe("BookingService", () => {
     };
 
     await expect(bookingService.createBooking(bookingDTO)).rejects.toThrow(
-      "Properiade não encontrada."
+      "Propriedade não encontrada."
     );
   });
 
@@ -183,5 +183,13 @@ describe("BookingService", () => {
     expect(spyFindById).toHaveBeenCalledWith(booking.getId());
     expect(spyFindById).toHaveBeenCalledTimes(2);
     spyFindById.mockRestore();
+  });
+
+  it("deve lançar um erro ao tentar cancelar uma reserva inexistente", async () => {
+    const bookingId = "invalid-id";
+
+    await expect(bookingService.cancelBooking(bookingId)).rejects.toThrow(
+      "Reserva não encontrada."
+    );
   });
 });

@@ -18,7 +18,7 @@ export class BookingService {
       dto.propertyId
     );
     if (!property) {
-      throw new Error("Properiade não encontrada.");
+      throw new Error("Propriedade não encontrada.");
     }
 
     const guest = await this.userService.findUserById(dto.guestId);
@@ -42,6 +42,11 @@ export class BookingService {
 
   async cancelBooking(bookingId: string): Promise<void> {
     const booking = await this.bookingRepository.findById(bookingId);
+
+    if (!booking) {
+      throw new Error("Reserva não encontrada.");
+    }
+
     booking?.cancel(new Date());
     await this.bookingRepository.save(booking!);
   }
