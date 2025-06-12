@@ -1,11 +1,11 @@
-Desafio Técnico: Desenvolvimento Orientado a Testes (TDD)
-Objetivo:
+# Desafio Técnico: Desenvolvimento Orientado a Testes (TDD)
+## Objetivo:
 Implementar testes utilizando TDD no sistema de reservas de propriedades. Os testes devem cobrir os mappers, criação de usuários (guests) e propriedades via REST, validação de políticas de reembolso, e o serviço de cancelamento de reservas.
 
-0. Clone o repositório
+## 0. Clone o repositório
 Utilize o repositório como base para o projeto na branch main: https://github.com/devfullcycle/fc4-tdd
 
-1. Testes Unitários nos Mappers
+## 1. Testes Unitários nos Mappers
 Arquivos de teste a criar:
 
 src/infrastructure/persistence/mappers/property_mapper.test.ts
@@ -25,7 +25,8 @@ Especificações dos testes no arquivo booking_mapper.test.ts:
 it("deve converter BookingEntity em Booking corretamente")
 it("deve lançar erro de validação ao faltar campos obrigatórios no BookingEntity")
 it("deve converter Booking para BookingEntity corretamente")
-2. Testes E2E de Criação de Usuário (Guest)
+
+## 2. Testes E2E de Criação de Usuário (Guest)
 Arquivo de teste a criar:
 
 src/infrastructure/web/user_controller_e2e.test.ts
@@ -38,7 +39,8 @@ Especificações dos testes:
 
 it("deve criar um usuário com sucesso")
 it("deve retornar erro com código 400 e mensagem 'O campo nome é obrigatório.' ao enviar um nome vazio")
-3. Testes E2E de Criação de Propriedade
+
+## 3. Testes E2E de Criação de Propriedade
 Arquivo de teste a criar:
 
 src/infrastructure/web/property_controller_e2e.test.ts
@@ -54,7 +56,8 @@ it("deve criar uma propriedade com sucesso")
 it("deve retornar erro com código 400 e mensagem 'O nome da propriedade é obrigatório.' ao enviar um nome vazio")
 it("deve retornar erro com código 400 e mensagem 'A capacidade máxima deve ser maior que zero.' ao enviar maxGuests igual a zero ou negativo")
 it("deve retornar erro com código 400 e mensagem 'O preço base por noite é obrigatório.' ao enviar basePricePerNight ausente")
-4. Testes de Políticas de Reembolso (RefundRuleFactory)
+
+## 4. Testes de Políticas de Reembolso (RefundRuleFactory)
 Arquivo de teste a criar:
 
 src/domain/cancelation/refund_rule_factory.test.ts
@@ -67,7 +70,8 @@ Especificações dos testes:
 it("deve retornar FullRefund quando a reserva for cancelada com mais de 7 dias de antecedência")
 it("deve retornar PartialRefund quando a reserva for cancelada entre 1 e 7 dias de antecedência")
 it("deve retornar NoRefund quando a reserva for cancelada com menos de 1 dia de antecedência")
-5. Testes de Cancelamento de Reserva
+
+## 5. Testes de Cancelamento de Reserva
 Arquivo de teste existente:
 
 src/application/services/booking_service.test.ts

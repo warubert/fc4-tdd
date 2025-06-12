@@ -6,4 +6,13 @@ export class UserService {
   async findUserById(id: string): Promise<User | null> {
     return this.userRepository.findById(id);
   }
+
+  async createUser(user: User): Promise<void> {
+    const existingUser = await this.userRepository.findById(user.getId());
+    if (existingUser) {
+      throw new Error("Usuário já existe com este ID.");
+    }
+    
+    return await this.userRepository.save(user);
+  }
 }
