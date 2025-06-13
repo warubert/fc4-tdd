@@ -47,11 +47,6 @@ describe("UserController", () => {
     const userRepo = dataSource.getRepository(UserEntity);
 
     await userRepo.clear();
-
-    // await userRepo.save({
-    //   id: "1",
-    //   name: "Usuário de Teste",
-    // });
   });
 
   it("deve criar um usuário com sucesso", async () => {

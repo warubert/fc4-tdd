@@ -38,17 +38,4 @@ export class UserController {
         .json({ message: error.message || "An unexpected error occurred" });
     }
   }
-
-  // async cancelBooking(req: Request, res: Response): Promise<Response> {
-  //   try {
-  //     const bookingId = req.params.id;
-  //     await this.bookingService.cancelBooking(bookingId);
-
-  //     return res
-  //       .status(200)
-  //       .json({ message: "Reserva cancelada com sucesso." });
-  //   } catch (error: any) {
-  //     return res.status(400).json({ message: "Reserva não encontrada." });
-  //   }
-  // }
 }

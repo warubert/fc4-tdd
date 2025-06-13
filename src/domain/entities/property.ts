@@ -14,7 +14,10 @@ export class Property {
       throw new Error("O nome é obrigatório");
     }
     if (maxGuests <= 0) {
-      throw new Error("O número máximo de hóspedes deve ser maior que zero");
+      throw new Error("A capacidade máxima deve ser maior que zero.");
+    }
+    if (basePricePerNight <= 0) {
+      throw new Error("O valor por noite deve ser maior que zero");
     }
     this.id = id;
     this.name = name;
