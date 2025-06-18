@@ -8,7 +8,7 @@ import { User } from "../../../domain/entities/user";
 import { DateRange } from "../../../domain/value_objects/date_range";
 
 describe("BookingMapper", () => {
-    it("deve converter BookingEntity em Property corretamente", () => {
+    it("deve converter BookingEntity em Booking corretamente", () => {
       const propertyEntity: PropertyEntity = {
         id: "1",
         name: "Casa",
@@ -23,14 +23,6 @@ describe("BookingMapper", () => {
         name: "João"
       }
 
-      const property = new Property(
-        "1",
-        "Casa",
-        "Casa de praia",
-        4,
-        150
-      );
-
       const bookingEntity: BookingEntity = {
         id: "1",
         property: propertyEntity,
@@ -41,11 +33,37 @@ describe("BookingMapper", () => {
         totalPrice: 600,
         status: "CONFIRMED"
       };
-
-      const bookingDomain = BookingMapper.toDomain(bookingEntity, property);
-
+      
+      const bookingDomain = BookingMapper.toDomain(bookingEntity);
+      
       expect(bookingDomain).toBeInstanceOf(Booking);
       expect(bookingDomain.getId()).toBe("1");
+    });
+    
+    it("deve lançar erro de validação ao faltar campos obrigatórios no BookingEntity", () => {
+      const propertyEntity: PropertyEntity = {
+        id: "1",
+        name: "Casa",
+        description: "Casa de praia",
+        maxGuests: 4,
+        basePricePerNight: 150,
+        bookings: []
+      };
+
+      const userEntity: UserEntity = {
+        id: "1",
+        name: "João"
+      }
+
+      const entity: Partial<BookingEntity> = {
+        id: "1",
+        property: propertyEntity,
+        guest: userEntity,
+        startDate: new Date("2025-12-20"),
+        endDate: new Date("2025-12-25"),
+      };
+
+      expect(() => BookingMapper.toDomain(entity as BookingEntity)).toThrow("BookingEntity Inválido: Campos faltando");
     });
 
     it("deve converter Booking para BookingEntity corretamente", () => {
@@ -81,30 +99,5 @@ describe("BookingMapper", () => {
       expect(entity.id).toBe("1");
     });
 
-    it("deve lançar erro de validação ao faltar campos obrigatórios no BookingEntity", () => {
-      const propertyEntity: PropertyEntity = {
-        id: "1",
-        name: "Casa",
-        description: "Casa de praia",
-        maxGuests: 4,
-        basePricePerNight: 150,
-        bookings: []
-      };
-
-      const userEntity: UserEntity = {
-        id: "1",
-        name: "João"
-      }
-
-      const entity: Partial<BookingEntity> = {
-        id: "1",
-        property: propertyEntity,
-        guest: userEntity,
-        startDate: new Date("2025-12-20"),
-        endDate: new Date("2025-12-25"),
-      };
-
-      expect(() => BookingMapper.toDomain(entity as BookingEntity)).toThrow("BookingEntity Inválido: Campos faltando");
-    });
 });
 
